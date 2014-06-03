@@ -1,0 +1,130 @@
+<body>
+  {{> _resetPasswordDialog}}
+  {{> _enrollAccountDialog}}
+  {{> _justVerifiedEmailDialog}}
+  {{> _configureLoginServiceDialog}}
+
+  <!-- if we're not showing a dropdown, we need some other place to show messages -->
+  {{> _loginButtonsMessagesDialog}}
+</body>
+
+<template name="_resetPasswordDialog">
+  {{#if inResetPasswordFlow}}
+    <div class="modal show fade in">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button id="login-buttons-cancel-reset-password" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <h4 class="modal-title">{{i18n 'accounts.text_reset_password_title'}}</h4>
+          </div>
+          <div class="modal-body">
+            <div class="form-group">
+              <label id="reset-password-new-password-label" for="reset-password-new-password">
+                {{i18n 'accounts.label_new_password'}}
+              </label>
+        
+              <div class="reset-password-new-password-wrapper">
+                <input id="reset-password-new-password" type="password" class="form-control" />
+              </div>
+        
+              {{> _loginButtonsMessages}}
+        
+            </div>
+          </div>      
+          <div class="modal-footer">
+            <a class="btn btn-primary login-button login-button-form-submit" id="login-buttons-reset-password-button" href="#">
+              {{i18n 'accounts.command_set_password'}}
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  {{/if}}
+</template>
+
+<template name="_enrollAccountDialog">
+  {{#if inEnrollAccountFlow}}
+    <div class="hide-background"></div>
+
+    <div class="accounts-dialog accounts-centered-dialog">
+      <label id="enroll-account-password-label" for="enroll-account-password">
+        Choose a password
+      </label>
+
+      <div class="enroll-account-password-wrapper">
+        <input id="enroll-account-password" type="password" />
+      </div>
+
+      {{> _loginButtonsMessages}}
+
+      <div class="login-button login-button-form-submit" id="login-buttons-enroll-account-button">
+        Create account
+      </div>
+
+      <a class="accounts-close" id="login-buttons-cancel-enroll-account">&times;</a>
+    </div>
+  {{/if}}
+</template>
+
+<template name="_justVerifiedEmailDialog">
+  {{#if visible}}
+    <div class="accounts-dialog accounts-centered-dialog">
+      Email verified
+      <div class="login-button" id="just-verified-dismiss-button">Dismiss</div>
+    </div>
+  {{/if}}
+</template>
+
+<template name="_configureLoginServiceDialog">
+  {{#if visible}}
+    <div id="configure-login-service-dialog" class="modal show fade in">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <!-- button id="login-buttons-cancel-configure-service" class="close" data-dismiss="modal" aria-hidden="true">&times;</button -->
+            <!-- a class="accounts-close configure-login-service-dismiss-button">&times;</a -->
+            <h4 class="modal-title">{{i18n 'accounts.text_configure_login_service'}}</h4>
+          </div>
+          <div class="modal-body">
+            {{> configurationSteps}}
+      
+            <p>
+              {{i18n 'accounts.text_configure_login_service_copy'}}
+            </p>
+            <p>
+              {{#each configurationFields}}
+                <div class="form-group">
+                  <label for="configure-login-service-dialog-{{property}}">{{label}}</label>
+                  <input id="configure-login-service-dialog-{{property}}" class="form-control" type="text" />
+                </div>
+              {{/each}}
+            </p>
+          </div>
+          <div class="modal-footer">
+            <div class="new-section">
+              <div class="btn btn-default login-button configure-login-service-dismiss-button">
+                {{i18n 'accounts.command_do_later'}}
+              </div>
+              
+              <div class="btn btn-primary login-button login-button-configure {{#if saveDisabled}}login-button-disabled{{/if}}"
+                   id="configure-login-service-dialog-save-configuration">
+                {{i18n 'accounts.command_save_configuration'}}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  {{/if}}
+</template>
+
+<template name="_loginButtonsMessagesDialog">
+  {{#if visible}}
+    <div class="accounts-dialog accounts-centered-dialog" id="login-buttons-message-dialog">
+      {{> _loginButtonsMessages}}
+      <div class="login-button" id="messages-dialog-dismiss-button">Dismiss</div>
+    </div>
+  {{/if}}
+</template>
+
+
