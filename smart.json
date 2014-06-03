@@ -1,0 +1,9 @@
+{
+  "name": "mira-accounts-ui",
+  "description": "Accounts-ui package with bootstrap 3.x",
+  "homepage": "https://github.com/miraten/mira-accounts-ui",
+  "author": "Lee Sangwon <lee@miraten.com>",
+  "version": "0.1.0",
+  "git": "https://github.com/miraten/mira-accounts-ui.git",
+  "packages": {}
+}
