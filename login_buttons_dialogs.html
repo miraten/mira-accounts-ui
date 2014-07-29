@@ -68,10 +68,18 @@
 
 <template name="_justVerifiedEmailDialog">
   {{#if visible}}
-    <div class="accounts-dialog accounts-centered-dialog">
-      Email verified
-      <div class="login-button" id="just-verified-dismiss-button">Dismiss</div>
+  <div class="modal show fade in">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-body">
+          Email verified
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-default" id="just-verified-dismiss-button">{{i18n 'accounts.command_close'}}</button>
+        </div>
+      </div>
     </div>
+  </div>
   {{/if}}
 </template>
 
@@ -120,9 +128,17 @@
 
 <template name="_loginButtonsMessagesDialog">
   {{#if visible}}
-    <div class="accounts-dialog accounts-centered-dialog" id="login-buttons-message-dialog">
-      {{> _loginButtonsMessages}}
-      <div class="login-button" id="messages-dialog-dismiss-button">Dismiss</div>
+    <div id="login-buttons-message-dialog" class="modal show fade in">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-body">
+            {{> _loginButtonsMessages}}
+          </div>
+          <div class="modal-footer">
+            <button class="btn btn-default" id="messages-dialog-dismiss-button">{{i18n 'accounts.command_close'}}</button>
+          </div>
+        </div>
+      </div>
     </div>
   {{/if}}
 </template>
